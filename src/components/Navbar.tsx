@@ -1,4 +1,5 @@
-import { Sun, Moon, Globe } from 'lucide-react';
+import { Sun, Moon, Globe, Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface NavbarProps {
   onNavClick: (section: string) => void;
@@ -9,6 +10,31 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLang }: NavbarProps) {
+  const [installPrompt, setInstallPrompt] = useState<Event | null>(null);
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setIsInstalled(true);
+    }
+
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!installPrompt) return;
+    // @ts-ignore
+    await installPrompt.prompt();
+    setIsInstalled(true);
+    setInstallPrompt(null);
+  };
+
   const navText = {
     en: {
       home: 'Home',
@@ -16,7 +42,8 @@ export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLan
       product: 'The Product',
       slides: 'Slides',
       contact: 'Reach Us',
-      cta: 'Begin Journey'
+      cta: 'Begin Journey',
+      install: 'Install App',
     },
     ar: {
       home: 'الرئيسية',
@@ -24,7 +51,8 @@ export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLan
       product: 'المنتج',
       slides: 'الشرائح',
       contact: 'اتصل بنا',
-      cta: 'ابدأ الرحلة'
+      cta: 'ابدأ الرحلة',
+      install: 'نزّل التطبيق',
     }
   }[lang];
 
@@ -42,46 +70,33 @@ export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLan
 
         {/* Menu Items */}
         <div className={`hidden md:flex items-center ${lang === 'ar' ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
-          <a
-            href="#home"
-            className="text-sm font-medium text-black dark:text-white transition-colors"
-            onClick={(e) => { e.preventDefault(); onNavClick('home'); }}
-          >
-            {navText.home}
-          </a>
-          <a
-            href="#creator"
-            className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
-            onClick={(e) => { e.preventDefault(); onNavClick('creator'); }}
-          >
-            {navText.creator}
-          </a>
-          <a
-            href="#product"
-            className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
-            onClick={(e) => { e.preventDefault(); onNavClick('product'); }}
-          >
-            {navText.product}
-          </a>
-          <a
-            href="#slides"
-            className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
-            onClick={(e) => { e.preventDefault(); onNavClick('slides'); }}
-          >
-            {navText.slides}
-          </a>
-          <a
-            href="#contact"
-            className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
-            onClick={(e) => { e.preventDefault(); onNavClick('contact'); }}
-          >
-            {navText.contact}
-          </a>
+          <a href="#home" className="text-sm font-medium text-black dark:text-white transition-colors"
+            onClick={(e) => { e.preventDefault(); onNavClick('home'); }}>{navText.home}</a>
+          <a href="#creator" className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+            onClick={(e) => { e.preventDefault(); onNavClick('creator'); }}>{navText.creator}</a>
+          <a href="#product" className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+            onClick={(e) => { e.preventDefault(); onNavClick('product'); }}>{navText.product}</a>
+          <a href="#slides" className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+            onClick={(e) => { e.preventDefault(); onNavClick('slides'); }}>{navText.slides}</a>
+          <a href="#contact" className="text-sm font-medium text-[#6F6F6F] dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+            onClick={(e) => { e.preventDefault(); onNavClick('contact'); }}>{navText.contact}</a>
         </div>
 
         {/* Controls */}
         <div className="flex items-center gap-3">
-          
+
+          {/* PWA Install Button - only shows when browser supports installation */}
+          {installPrompt && !isInstalled && (
+            <button
+              onClick={handleInstall}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-black hover:scale-105 active:scale-95 transition-all duration-300 shadow-md text-xs font-bold animate-pulse"
+              title={navText.install}
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>{navText.install}</span>
+            </button>
+          )}
+
           {/* Language Toggle */}
           <button
             onClick={toggleLang}
