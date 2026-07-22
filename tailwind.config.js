@@ -7,9 +7,20 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        aura: {
+          cream: '#FDFBF7',
+          beige: '#F4EFE6',
+          gold: '#C5A059',
+          'gold-dark': '#A37F38',
+          charcoal: '#1A1918',
+          'charcoal-light': '#2A2928',
+        }
+      },
       fontFamily: {
-        display: ['"Instrument Serif"', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        display: ['"Cormorant Garamond"', 'serif'],
+        serif: ['"Cormorant Garamond"', 'serif'],
+        sans: ['"Plus Jakarta Sans"', '"Noto Kufi Arabic"', 'sans-serif'],
       },
       keyframes: {
         'fade-rise': {

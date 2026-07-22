@@ -1,6 +1,8 @@
 /*_121.jpg
 /node_modules
 /*.txt
+/*.pdf
+/public/*.pdf
 /.git
 /.agents
 /.vercel
