@@ -721,15 +721,20 @@ export default function App() {
               <h5 className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">{t.contactTitle}</h5>
               <div className="space-y-3 text-sm text-neutral-400">
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#C5A059]" />
-                  <span>info@aurapowder.com</span>
+                  <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <a href="mailto:bm522363@gmail.com" className="hover:text-white transition-colors">bm522363@gmail.com</a>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
+                    <a href="tel:+201141688840" dir="ltr" className="hover:text-white transition-colors">+20 114 168 8840</a>
+                  </div>
+                  <div className="flex items-center gap-3 pl-7 rtl:pl-0 rtl:pr-7">
+                    <a href="tel:+201064592367" dir="ltr" className="hover:text-white transition-colors">+20 106 459 2367</a>
+                  </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#C5A059]" />
-                  <span>+20 100 000 0000</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-[#C5A059]" />
+                  <MapPin className="w-4 h-4 text-[#C5A059] shrink-0" />
                   <span>{t.locVal}</span>
                 </div>
               </div>
