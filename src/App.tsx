@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import VideoBackground from './components/VideoBackground';
 import { 
-  Sparkles, Droplets, Leaf, Award, ArrowRight, 
+  Mail, Phone, MessageCircle, Sparkles, Droplets, Leaf, Award, ArrowRight, 
   ChevronDown, Trees, Trash2, RefreshCw, 
   Plane, Instagram, Facebook, Video, Feather, MapPin
 } from 'lucide-react';
@@ -791,6 +791,26 @@ export default function App() {
               <h5 className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">{t.contactTitle}</h5>
               <div className="space-y-3 text-sm text-neutral-400">
                 <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <a href="mailto:aurapowder8@gmail.com" className="hover:text-white transition-colors">aurapowder8@gmail.com</a>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
+                    <a href="tel:+201553543629" dir="ltr" className="hover:text-white transition-colors">+20 155 354 3629</a>
+                    <a href="https://wa.me/201553543629" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-600/20 text-emerald-400 text-xs font-bold hover:bg-emerald-600/40 transition-colors">
+                      <MessageCircle className="w-3 h-3" /> WhatsApp
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
+                    <a href="tel:+201064592367" dir="ltr" className="hover:text-white transition-colors">+20 106 459 2367</a>
+                    <a href="https://wa.me/201064592367" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-600/20 text-emerald-400 text-xs font-bold hover:bg-emerald-600/40 transition-colors">
+                      <MessageCircle className="w-3 h-3" /> WhatsApp
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
                   <MapPin className="w-4 h-4 text-[#C5A059] shrink-0" />
                   <span>{t.locVal}</span>
                 </div>
@@ -801,14 +821,14 @@ export default function App() {
             <div className="space-y-4">
               <h5 className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">{t.followUs}</h5>
               <div className="flex items-center gap-4">
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-[#2A2928] border border-[#C5A059]/30 flex items-center justify-center text-neutral-400 hover:text-white hover:border-[#C5A059] transition-all">
+                <a href="https://www.instagram.com/aura.powder?utm_source=qr" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-[#2A2928] border border-[#C5A059]/30 flex items-center justify-center text-neutral-400 hover:text-white hover:border-[#C5A059] transition-all" title="Instagram">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-[#2A2928] border border-[#C5A059]/30 flex items-center justify-center text-neutral-400 hover:text-white hover:border-[#C5A059] transition-all">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="https://tiktok.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-[#2A2928] border border-[#C5A059]/30 flex items-center justify-center text-neutral-400 hover:text-white hover:border-[#C5A059] transition-all">
+                <a href="https://www.tiktok.com/@aura.powder?_r=1&_t=ZS-98J3bnDaeTU" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-[#2A2928] border border-[#C5A059]/30 flex items-center justify-center text-neutral-400 hover:text-white hover:border-[#C5A059] transition-all" title="TikTok">
                   <Video className="w-5 h-5" />
+                </a>
+                <a href="https://wa.me/201553543629" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-center text-emerald-400 hover:text-white hover:bg-emerald-600 transition-all" title="WhatsApp Chat">
+                  <MessageCircle className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -822,6 +842,20 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Quick Contact Button */}
+      <a 
+        href="https://wa.me/201553543629" 
+        target="_blank" 
+        rel="noreferrer" 
+        aria-label="Contact Us on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-emerald-600 text-white shadow-2xl hover:bg-emerald-500 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group"
+      >
+        <MessageCircle className="w-6 h-6 animate-pulse" />
+        <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-in-out whitespace-nowrap text-xs font-bold px-0 group-hover:px-2">
+          تواصل معنا عبر واتساب
+        </span>
+      </a>
 
     </div>
   );
