@@ -516,7 +516,7 @@ export default function App() {
             {/* Product 1: Libre Purple */}
             <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
-                <img src="/brand/prod_libre.jpg" alt="Libre Purple AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/brand/prod_libre.jpg" alt="Libre Purple AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
                   280 EGP
                 </span>
@@ -553,7 +553,7 @@ export default function App() {
             {/* Product 2: Japanese Baby Blue */}
             <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
-                <img src="/brand/prod_japanese.jpg" alt="Japanese Baby Blue AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/brand/prod_japanese.jpg" alt="Japanese Baby Blue AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
                   280 EGP
                 </span>
@@ -590,7 +590,7 @@ export default function App() {
             {/* Product 3: Pomegranate Musk Gold */}
             <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-amber-950/20">
-                <img src="/brand/prod_pomegranate.jpg" alt="Pomegranate Musk Gold AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/brand/prod_pomegranate.jpg" alt="Pomegranate Musk Gold AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
                   280 EGP
                 </span>
@@ -644,7 +644,7 @@ export default function App() {
             {/* Refill 1: Libre Purple Sachet */}
             <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
-                <img src="/brand/refill_libre.jpg" alt="Libre Purple Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/brand/refill_libre.jpg" alt="Libre Purple Refill Sachet" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
                   150 EGP (2-Pack)
                 </span>
