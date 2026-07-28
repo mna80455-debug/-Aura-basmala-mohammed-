@@ -10,7 +10,7 @@ import ReviewsSection from './components/ReviewsSection';
 
 import { 
   Mail, Phone, MessageCircle, Sparkles, Droplets, Leaf, Award, ArrowRight, 
-  ChevronDown, Trees, Trash2, RefreshCw, ShoppingBag, Check,
+  ChevronDown, Trees, Trash2, RefreshCw, ShoppingBag, 
   Plane, Instagram, Video, Feather, MapPin
 } from 'lucide-react';
 

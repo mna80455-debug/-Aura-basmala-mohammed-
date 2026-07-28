@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, MessageCircle, Truck, Check } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, MessageCircle, Truck } from 'lucide-react';
 
 export interface CartItem {
   id: string;
@@ -17,7 +17,7 @@ interface CartDrawerProps {
   items: CartItem[];
   onUpdateQuantity: (id: string, delta: number) => void;
   onRemoveItem: (id: string) => void;
-  onClearCart: () => void;
+  onClearCart?: () => void;
   lang: 'en' | 'ar';
 }
 
@@ -27,7 +27,6 @@ export default function CartDrawer({
   items,
   onUpdateQuantity,
   onRemoveItem,
-  onClearCart,
   lang
 }: CartDrawerProps) {
   const [showCheckout, setShowCheckout] = useState(false);

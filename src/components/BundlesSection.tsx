@@ -1,4 +1,4 @@
-import { Sparkles, ShoppingBag, Check, ShieldCheck, Tag } from 'lucide-react';
+import { ShoppingBag, Check, Tag } from 'lucide-react';
 import { useState } from 'react';
 
 interface BundlesSectionProps {
