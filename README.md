@@ -5,11 +5,11 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![PWA](https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://basmala-mohammed.vercel.app)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://aura-powder.vercel.app)
 
 A fully interactive, bilingual (English/Arabic) portfolio website showcasing **Aura® Powder 2026** — an eco-friendly, waterless personal care innovation. 
 
-🌐 **Live Demo**: [basmala-mohammed.vercel.app](https://basmala-mohammed.vercel.app)
+🌐 **Live Demo**: [aura-powder.vercel.app](https://aura-powder.vercel.app)
 
 ---
 
