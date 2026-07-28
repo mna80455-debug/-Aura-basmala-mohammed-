@@ -4,7 +4,7 @@ import VideoBackground from './components/VideoBackground';
 import { 
   Mail, Phone, MessageCircle, Sparkles, Droplets, Leaf, Award, ArrowRight, 
   ChevronDown, Trees, Trash2, RefreshCw, 
-  Plane, Instagram, Facebook, Video, Feather, MapPin
+  Plane, Instagram, Video, Feather, MapPin
 } from 'lucide-react';
 
 export default function App() {
