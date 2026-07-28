@@ -766,16 +766,6 @@ export default function App() {
 
       {/* VERIFIED CUSTOMER REVIEWS (#6) */}
       <ReviewsSection lang={lang} />
-                </div>
-                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* OUR STORY Section */}
       <section className="py-24 px-4 sm:px-8 bg-[#FDFBF7] dark:bg-[#1A1918]">
