@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import VideoBackground from './components/VideoBackground';
+import TopBar from './components/TopBar';
+import CartDrawer, { CartItem } from './components/CartDrawer';
+import BundlesSection from './components/BundlesSection';
+import ScentQuiz from './components/ScentQuiz';
+import ComparisonTable from './components/ComparisonTable';
+import ReviewsSection from './components/ReviewsSection';
+
 import { 
   Mail, Phone, MessageCircle, Sparkles, Droplets, Leaf, Award, ArrowRight, 
-  ChevronDown, Trees, Trash2, RefreshCw, 
+  ChevronDown, Trees, Trash2, RefreshCw, ShoppingBag, Check,
   Plane, Instagram, Video, Feather, MapPin
 } from 'lucide-react';
 
@@ -15,6 +22,37 @@ export default function App() {
 
   const [ecoPeople, setEcoPeople] = useState<number>(100);
   const [ecoMonths, setEcoMonths] = useState<number>(12);
+
+  // Cart State
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const handleAddToCart = (item: { id: string; name: string; scentName?: string; price: number; image: string; type?: 'kit' | 'refill' | 'bundle' }) => {
+    setCartItems(prev => {
+      const existing = prev.find(i => i.id === item.id);
+      if (existing) {
+        return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+      }
+      return [...prev, { ...item, quantity: 1 }];
+    });
+    setIsCartOpen(true);
+  };
+
+  const handleUpdateQuantity = (id: string, delta: number) => {
+    setCartItems(prev => prev.map(item => {
+      if (item.id === id) {
+        const newQty = item.quantity + delta;
+        return newQty > 0 ? { ...item, quantity: newQty } : item;
+      }
+      return item;
+    }));
+  };
+
+  const handleRemoveItem = (id: string) => {
+    setCartItems(prev => prev.filter(item => item.id !== id));
+  };
+
+  const handleClearCart = () => setCartItems([]);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -259,6 +297,9 @@ export default function App() {
   return (
     <div className={`min-h-screen bg-[#FDFBF7] dark:bg-[#1A1918] text-[#1A1918] dark:text-[#FDFBF7] transition-colors duration-300 ${t.dir === 'rtl' ? 'font-arabic' : 'font-sans'}`} dir={t.dir}>
       
+      {/* Announcement Bar */}
+      <TopBar lang={lang} />
+
       {/* Navigation */}
       <Navbar 
         onNavClick={handleNavClick} 
@@ -266,6 +307,8 @@ export default function App() {
         toggleTheme={toggleTheme} 
         lang={lang} 
         toggleLang={toggleLang} 
+        cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+        onOpenCart={() => setIsCartOpen(true)}
       />
 
       {/* Hero Section - Single Headline, Single CTA, Visible Product Image */}
@@ -471,64 +514,112 @@ export default function App() {
           {/* 3 Full Starter Kits */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Product 1: Libre Purple */}
-            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
                 <img src="/brand/prod_libre.jpg" alt="Libre Purple AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  {t.badgeComingSoon}
+                  280 EGP
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-purple-700 dark:text-purple-400 uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod1Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod1Desc}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Sachet + 120ml Bottle</span>
+                    <span>Full Kit</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'libre-full-kit',
+                      name: t.prod1Name,
+                      scentName: 'Libre Purple',
+                      price: 280,
+                      image: '/brand/prod_libre.jpg',
+                      type: 'kit'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Product 2: Japanese Baby Blue */}
-            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
                 <img src="/brand/prod_japanese.jpg" alt="Japanese Baby Blue AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  {t.badgeComingSoon}
+                  280 EGP
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-sky-700 dark:text-sky-400 uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod2Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod2Desc}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Sachet + 120ml Bottle</span>
+                    <span>Full Kit</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'japanese-full-kit',
+                      name: t.prod2Name,
+                      scentName: 'Japanese Baby Blue',
+                      price: 280,
+                      image: '/brand/prod_japanese.jpg',
+                      type: 'kit'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Product 3: Pomegranate Musk Gold */}
-            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-amber-950/20">
                 <img src="/brand/prod_pomegranate.jpg" alt="Pomegranate Musk Gold AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  {t.badgeComingSoon}
+                  280 EGP
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod3Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod3Desc}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Sachet + 120ml Bottle</span>
+                    <span>Full Kit</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'pomegranate-full-kit',
+                      name: t.prod3Name,
+                      scentName: 'Pomegranate Musk Gold',
+                      price: 280,
+                      image: '/brand/prod_pomegranate.jpg',
+                      type: 'kit'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -551,60 +642,130 @@ export default function App() {
           {/* 3 Refill Sachets */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Refill 1: Libre Purple Sachet */}
-            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
                 <img src="/brand/refill_libre.jpg" alt="Libre Purple Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  REFILL SACHET
+                  150 EGP (2-Pack)
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-purple-700 dark:text-purple-400 uppercase">ECO REFILL PACK</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Libre Purple Refill</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc1}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Dry Powder Sachet</span>
+                    <span>Refill Only</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'libre-refill-pack',
+                      name: 'Libre Purple Refill Pack',
+                      scentName: 'Libre Purple',
+                      price: 150,
+                      image: '/brand/refill_libre.jpg',
+                      type: 'refill'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (150 ج.م) 🛒' : 'Add Refill to Cart (150 EGP)'}</span>
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Refill 2: Japanese Baby Blue Sachet */}
-            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
                 <img src="/brand/refill_japanese.jpg" alt="Japanese Baby Blue Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  REFILL SACHET
+                  150 EGP (2-Pack)
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-sky-700 dark:text-sky-400 uppercase">ECO REFILL PACK</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Japanese Baby Blue Refill</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc2}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Dry Powder Sachet</span>
+                    <span>Refill Only</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'japanese-refill-pack',
+                      name: 'Japanese Baby Blue Refill Pack',
+                      scentName: 'Japanese Baby Blue',
+                      price: 150,
+                      image: '/brand/refill_japanese.jpg',
+                      type: 'refill'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (150 ج.م) 🛒' : 'Add Refill to Cart (150 EGP)'}</span>
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Refill 3: Pomegranate Musk Gold Sachet */}
-            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-amber-950/20">
                 <img src="/brand/refill_pomegranate.jpg" alt="Pomegranate Musk Gold Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  REFILL SACHET
+                  150 EGP (2-Pack)
                 </span>
               </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">ECO REFILL PACK</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Pomegranate Musk Gold Refill</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc3}</p>
+                </div>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 space-y-4">
+                  <div className="flex items-center justify-between text-xs font-bold text-[#C5A059]">
+                    <span>15g Dry Powder Sachet</span>
+                    <span>Refill Only</span>
+                  </div>
+                  <button
+                    onClick={() => handleAddToCart({
+                      id: 'pomegranate-refill-pack',
+                      name: 'Pomegranate Musk Gold Refill Pack',
+                      scentName: 'Pomegranate Musk Gold',
+                      price: 150,
+                      image: '/brand/refill_pomegranate.jpg',
+                      type: 'refill'
+                    })}
+                    className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'أضف إلى السلة (150 ج.م) 🛒' : 'Add Refill to Cart (150 EGP)'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EXCLUSIVE VALUE BUNDLES SECTION (#3) */}
+      <BundlesSection lang={lang} onAddToCart={handleAddToCart} />
+
+      {/* SCENT FINDER QUIZ SECTION (#4) */}
+      <ScentQuiz lang={lang} onAddToCart={handleAddToCart} />
+
+      {/* AURA vs TRADITIONAL COMPARISON TABLE (#5) */}
+      <ComparisonTable lang={lang} />
+
+      {/* VERIFIED CUSTOMER REVIEWS (#6) */}
+      <ReviewsSection lang={lang} />
                 </div>
                 <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
@@ -856,6 +1017,17 @@ export default function App() {
           تواصل معنا عبر واتساب
         </span>
       </a>
+
+      {/* Interactive Slide-Over Cart Drawer & WhatsApp Express Checkout */}
+      <CartDrawer 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onClearCart={handleClearCart}
+        lang={lang}
+      />
 
     </div>
   );

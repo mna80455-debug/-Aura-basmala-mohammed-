@@ -1,4 +1,4 @@
-import { Sun, Moon, Globe, Download } from 'lucide-react';
+import { Sun, Moon, Globe, Download, ShoppingBag } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface NavbarProps {
@@ -7,9 +7,11 @@ interface NavbarProps {
   toggleTheme: () => void;
   lang: 'en' | 'ar';
   toggleLang: () => void;
+  cartCount?: number;
+  onOpenCart?: () => void;
 }
 
-export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLang }: NavbarProps) {
+export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLang, cartCount = 0, onOpenCart }: NavbarProps) {
   const [installPrompt, setInstallPrompt] = useState<Event | null>(null);
   const [isInstalled, setIsInstalled] = useState(false);
 
@@ -118,6 +120,20 @@ export default function Navbar({ onNavClick, theme, toggleTheme, lang, toggleLan
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4 text-[#C5A059]" /> : <Moon className="w-4 h-4 text-[#1A1918]" />}
+          </button>
+
+          {/* Cart Button */}
+          <button
+            onClick={onOpenCart}
+            className="relative p-2 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-[#1A1918] dark:text-[#FDFBF7] hover:scale-105 active:scale-95 transition-all duration-300 border border-[#C5A059]/30 shadow-sm"
+            aria-label="Open Shopping Cart"
+          >
+            <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold shadow-md animate-pulse">
+                {cartCount}
+              </span>
+            )}
           </button>
 
           <a
