@@ -83,18 +83,23 @@ export default function App() {
       step4Title: 'Step 4: Enjoy',
       step4Desc: 'Watch it transform into a rich, foamy shower gel and enjoy your shower!',
 
-      // Collection
-      prodTitle: 'THE AURA COLLECTION',
-      prodSub: 'Signature Fragrances Crafted for Every Mood',
+      // Collection (Full Starter Kits)
+      prodTitle: 'FULL STARTER KITS',
+      prodSub: 'Reusable Premium Bottle + 15g Concentrated Powder Sachet',
       badgeComingSoon: 'COMING SOON',
-      prod1Name: 'Libre Purple',
+      prod1Name: 'Libre Purple Full Kit',
       prod1Desc: 'Luxury perfume extract with warm amber notes and soft lavender floral undertones.',
-      prod2Name: 'Japanese Baby Blue',
+      prod2Name: 'Japanese Baby Blue Full Kit',
       prod2Desc: 'Delicate Japanese cherry blossom notes for a fresh, uplifting shower.',
-      prod3Name: 'Pomegranate Musk Gold',
+      prod3Name: 'Pomegranate Musk Gold Full Kit',
       prod3Desc: 'Rich pomegranate fused with golden velvet musk for a vibrant scent profile.',
-      prod4Name: 'Lavender Velvet',
-      prod4Desc: 'Soothing French lavender and violet flower notes for calm evening relaxation.',
+
+      // Refills
+      refillTitle: 'ECO REFILL SACHETS',
+      refillSub: 'Already Have The Bottle? Order Refill Powder Sachets Only',
+      refillDesc1: '15g Concentrated powder sachet of Libre Purple. Mixes with 120ml warm water.',
+      refillDesc2: '15g Concentrated powder sachet of Japanese Baby Blue. Mixes with 120ml warm water.',
+      refillDesc3: '15g Concentrated powder sachet of Pomegranate Musk Gold. Mixes with 120ml warm water.',
 
       // Our Story
       storyTitle: 'OUR STORY',
@@ -187,18 +192,23 @@ export default function App() {
       step4Title: 'الخطوة 4: استمتع (Enjoy)',
       step4Desc: 'شاهد المسحوق تتحول إلى جل رغوي فاخر واستمتع بتجربة استحمام استثنائية!',
 
-      // Collection
-      prodTitle: 'مجموعة أورا الفاخرة (THE AURA COLLECTION)',
-      prodSub: 'تشكيلة عطور مميزة صممت لترضي جميع الأذواق',
+      // Collection (Full Starter Kits)
+      prodTitle: 'المجموعة الكاملة (FULL STARTER KITS)',
+      prodSub: 'عبوة فاخرة قابلة لإعادة الاستخدام + كيس مسحوق مركز 15g (للمرة الأولى)',
       badgeComingSoon: 'قريباً (COMING SOON)',
-      prod1Name: 'Libre Purple',
+      prod1Name: 'Libre Purple Full Kit',
       prod1Desc: 'خلاصة عطرية فاخرة بنوتات العنبر الدافئ واللافندر الفرنسي الرفيع.',
-      prod2Name: 'Japanese Baby Blue',
+      prod2Name: 'Japanese Baby Blue Full Kit',
       prod2Desc: 'لمسات عطر زهر الكرز الياباني المنعش لشاور مليء بالنضارة والحيوية.',
-      prod3Name: 'Pomegranate Musk Gold',
+      prod3Name: 'Pomegranate Musk Gold Full Kit',
       prod3Desc: 'مزيج الرمان الطبيعي الجذاب مع المسك الذهبي الفاخر.',
-      prod4Name: 'Lavender Velvet',
-      prod4Desc: 'عبير اللافندر وزهور البنفسج المهدئة للأعصاب للاسترخاء قبل النوم.',
+
+      // Refills
+      refillTitle: 'عبوات إعادة الملء (ECO REFILLS)',
+      refillSub: 'عندك العبوة المستدامة؟ اطلب أكياس إعادة الملء الجافة فقط بدون الحاجة لشراء عبوة جديدة',
+      refillDesc1: 'كيس مسحوق جاف مركز 15g عطر Libre Purple. يخلط مع 120 مل ماء دافئ.',
+      refillDesc2: 'كيس مسحوق جاف مركز 15g عطر Japanese Baby Blue. يخلط مع 120 مل ماء دافئ.',
+      refillDesc3: 'كيس مسحوق جاف مركز 15g عطر Pomegranate Musk Gold. يخلط مع 120 مل ماء دافئ.',
 
       // Our Story
       storyTitle: 'قصتنا (OUR STORY)',
@@ -450,7 +460,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* THE AURA COLLECTION (Products Section - Standardized Scent Names & Coming Soon) */}
+      {/* THE AURA COLLECTION (Full Starter Kits Section) */}
       <section id="products" className="py-24 px-4 sm:px-8 bg-[#F4EFE6] dark:bg-[#2A2928]/60">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center space-y-3 max-w-3xl mx-auto">
@@ -458,7 +468,8 @@ export default function App() {
             <h3 className="text-3xl sm:text-5xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prodSub}</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* 3 Full Starter Kits */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Product 1: Libre Purple */}
             <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
@@ -469,13 +480,13 @@ export default function App() {
               </div>
               <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold tracking-widest text-purple-700 dark:text-purple-400 uppercase">AURA SIGNATURE</span>
+                  <span className="text-xs font-bold tracking-widest text-purple-700 dark:text-purple-400 uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod1Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod1Desc}</p>
                 </div>
                 <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Coming Soon</span>
+                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
                 </div>
               </div>
             </div>
@@ -490,13 +501,13 @@ export default function App() {
               </div>
               <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold tracking-widest text-sky-700 dark:text-sky-400 uppercase">AURA SIGNATURE</span>
+                  <span className="text-xs font-bold tracking-widest text-sky-700 dark:text-sky-400 uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod2Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod2Desc}</p>
                 </div>
                 <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Coming Soon</span>
+                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
                 </div>
               </div>
             </div>
@@ -511,34 +522,93 @@ export default function App() {
               </div>
               <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">AURA SIGNATURE</span>
+                  <span className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">AURA STARTER KIT</span>
                   <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod3Name}</h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod3Desc}</p>
                 </div>
                 <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
                   <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Coming Soon</span>
+                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Full Kit</span>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Product 4: Lavender Velvet */}
-            <div className="group rounded-3xl bg-[#FDFBF7] dark:bg-[#1A1918] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
-              <div className="relative aspect-[4/3] overflow-hidden bg-indigo-950/20">
-                <img src="/brand/scent_libre.jpg" alt="Lavender Velvet AURA Powder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  {t.badgeComingSoon}
+      {/* REFILL SACHETS SECTION */}
+      <section className="py-24 px-4 sm:px-8 bg-[#FDFBF7] dark:bg-[#1A1918]">
+        <div className="max-w-7xl mx-auto space-y-16">
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/40 text-[#A37F38] dark:text-[#C5A059] text-xs font-bold tracking-widest uppercase">
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>REFILL & REUSE</span>
+            </div>
+            <h2 className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">{t.refillTitle}</h2>
+            <h3 className="text-3xl sm:text-5xl font-serif font-bold text-[#1A1918] dark:text-white">{t.refillSub}</h3>
+          </div>
+
+          {/* 3 Refill Sachets */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Refill 1: Libre Purple Sachet */}
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
+                <img src="/brand/refill_libre.jpg" alt="Libre Purple Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
+                  REFILL SACHET
                 </span>
               </div>
               <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">AURA SIGNATURE</span>
-                  <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">{t.prod4Name}</h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.prod4Desc}</p>
+                  <span className="text-xs font-bold tracking-widest text-purple-700 dark:text-purple-400 uppercase">ECO REFILL PACK</span>
+                  <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Libre Purple Refill</h4>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc1}</p>
                 </div>
-                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#C5A059]">15g Sachet + 120ml Bottle</span>
-                  <span className="px-3 py-1 rounded-full bg-[#F4EFE6] dark:bg-[#2A2928] text-xs font-bold text-[#1A1918] dark:text-white">Coming Soon</span>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Refill 2: Japanese Baby Blue Sachet */}
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
+                <img src="/brand/refill_japanese.jpg" alt="Japanese Baby Blue Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
+                  REFILL SACHET
+                </span>
+              </div>
+              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold tracking-widest text-sky-700 dark:text-sky-400 uppercase">ECO REFILL PACK</span>
+                  <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Japanese Baby Blue Refill</h4>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc2}</p>
+                </div>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Refill 3: Pomegranate Musk Gold Sachet */}
+            <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col">
+              <div className="relative aspect-[4/3] overflow-hidden bg-amber-950/20">
+                <img src="/brand/refill_pomegranate.jpg" alt="Pomegranate Musk Gold Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
+                  REFILL SACHET
+                </span>
+              </div>
+              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold tracking-widest text-[#C5A059] uppercase">ECO REFILL PACK</span>
+                  <h4 className="text-2xl font-serif font-bold text-[#1A1918] dark:text-white">Pomegranate Musk Gold Refill</h4>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{t.refillDesc3}</p>
+                </div>
+                <div className="pt-4 border-t border-neutral-300 dark:border-neutral-700 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#C5A059]">15g Dry Powder Sachet</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918] text-xs font-bold text-[#C5A059]">Refill Only</span>
                 </div>
               </div>
             </div>
