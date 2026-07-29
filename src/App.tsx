@@ -518,7 +518,7 @@ export default function App() {
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
                 <img src="/brand/prod_libre.jpg" alt="Libre Purple AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  280 EGP
+                  {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
                 </span>
               </div>
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -537,14 +537,14 @@ export default function App() {
                       id: 'libre-full-kit',
                       name: t.prod1Name,
                       scentName: 'Libre Purple',
-                      price: 280,
+                      price: 0,
                       image: '/brand/prod_libre.jpg',
                       type: 'kit'
                     })}
                     className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                    <span>{lang === 'ar' ? 'طلب حجز مسبق (Pre-Order) 🛒' : 'Pre-Order Now 🛒'}</span>
                   </button>
                 </div>
               </div>
@@ -555,7 +555,7 @@ export default function App() {
               <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
                 <img src="/brand/prod_japanese.jpg" alt="Japanese Baby Blue AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  280 EGP
+                  {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
                 </span>
               </div>
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -574,14 +574,14 @@ export default function App() {
                       id: 'japanese-full-kit',
                       name: t.prod2Name,
                       scentName: 'Japanese Baby Blue',
-                      price: 280,
+                      price: 0,
                       image: '/brand/prod_japanese.jpg',
                       type: 'kit'
                     })}
                     className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                    <span>{lang === 'ar' ? 'طلب حجز مسبق (Pre-Order) 🛒' : 'Pre-Order Now 🛒'}</span>
                   </button>
                 </div>
               </div>
@@ -592,7 +592,7 @@ export default function App() {
               <div className="relative aspect-[4/3] overflow-hidden bg-amber-950/20">
                 <img src="/brand/prod_pomegranate.jpg" alt="Pomegranate Musk Gold AURA Powder" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#C5A059] text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  280 EGP
+                  {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
                 </span>
               </div>
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -611,14 +611,14 @@ export default function App() {
                       id: 'pomegranate-full-kit',
                       name: t.prod3Name,
                       scentName: 'Pomegranate Musk Gold',
-                      price: 280,
+                      price: 0,
                       image: '/brand/prod_pomegranate.jpg',
                       type: 'kit'
                     })}
                     className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>{lang === 'ar' ? 'أضف إلى السلة (280 ج.م) 🛒' : 'Add to Cart (280 EGP)'}</span>
+                    <span>{lang === 'ar' ? 'طلب حجز مسبق (Pre-Order) 🛒' : 'Pre-Order Now 🛒'}</span>
                   </button>
                 </div>
               </div>
@@ -646,7 +646,7 @@ export default function App() {
               <div className="relative aspect-[4/3] overflow-hidden bg-purple-950/20">
                 <img src="/brand/refill_libre.jpg" alt="Libre Purple Refill Sachet" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  150 EGP (2-Pack)
+                  {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
                 </span>
               </div>
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -665,14 +665,14 @@ export default function App() {
                       id: 'libre-refill-pack',
                       name: 'Libre Purple Refill Pack',
                       scentName: 'Libre Purple',
-                      price: 150,
+                      price: 0,
                       image: '/brand/refill_libre.jpg',
                       type: 'refill'
                     })}
                     className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>{lang === 'ar' ? 'أضف إلى السلة (150 ج.م) 🛒' : 'Add Refill to Cart (150 EGP)'}</span>
+                    <span>{lang === 'ar' ? 'حجز ريفيل مسبقاً 🛒' : 'Pre-Order Refill 🛒'}</span>
                   </button>
                 </div>
               </div>
@@ -681,9 +681,9 @@ export default function App() {
             {/* Refill 2: Japanese Baby Blue Sachet */}
             <div className="group rounded-3xl bg-[#F4EFE6] dark:bg-[#2A2928] border border-[#C5A059]/30 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
               <div className="relative aspect-[4/3] overflow-hidden bg-sky-950/20">
-                <img src="/brand/refill_japanese.jpg" alt="Japanese Baby Blue Refill Sachet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/brand/refill_japanese.jpg" alt="Japanese Baby Blue Refill Sachet" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-[#C5A059] dark:text-[#1A1918] text-xs font-extrabold shadow-md uppercase tracking-wider">
-                  150 EGP (2-Pack)
+                  {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
                 </span>
               </div>
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -702,14 +702,14 @@ export default function App() {
                       id: 'japanese-refill-pack',
                       name: 'Japanese Baby Blue Refill Pack',
                       scentName: 'Japanese Baby Blue',
-                      price: 150,
+                      price: 0,
                       image: '/brand/refill_japanese.jpg',
                       type: 'refill'
                     })}
                     className="w-full py-3 rounded-full bg-[#1A1918] dark:bg-[#C5A059] text-white dark:text-[#1A1918] hover:bg-[#C5A059] dark:hover:bg-[#FDFBF7] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>{lang === 'ar' ? 'أضف إلى السلة (150 ج.م) 🛒' : 'Add Refill to Cart (150 EGP)'}</span>
+                    <span>{lang === 'ar' ? 'حجز ريفيل مسبقاً 🛒' : 'Pre-Order Refill 🛒'}</span>
                   </button>
                 </div>
               </div>

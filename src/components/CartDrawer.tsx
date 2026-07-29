@@ -37,52 +37,48 @@ export default function CartDrawer({
 
   if (!isOpen) return null;
 
-  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const freeShippingThreshold = 400;
-  const isFreeShipping = subtotal >= freeShippingThreshold;
-  const shippingCost = subtotal > 0 && !isFreeShipping ? 50 : 0;
-  const total = subtotal + shippingCost;
+  const itemCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   const text = {
     en: {
-      title: 'Shopping Cart',
-      empty: 'Your cart is currently empty.',
+      title: 'Pre-Order Cart',
+      empty: 'Your pre-order cart is currently empty.',
       explore: 'Explore Collection',
-      subtotal: 'Subtotal',
-      shipping: 'Shipping',
-      freeShipping: 'FREE',
-      total: 'Total',
-      freeShippingBar: (needed: number) => `Add ${needed} EGP more to get FREE Delivery! 🚛`,
-      freeShippingQualified: '🎉 You have qualified for FREE Shipping!',
-      checkoutBtn: 'Proceed to Checkout via WhatsApp',
-      checkoutTitle: 'Express Checkout',
-      checkoutSub: 'Enter your delivery details to send your order directly to our WhatsApp team.',
+      subtotal: 'Status',
+      shipping: 'Delivery',
+      freeShipping: 'To Be Confirmed',
+      total: 'Pre-Order Status',
+      freeShippingBar: () => `Reserve your items early to get priority delivery at launch! 🚀`,
+      freeShippingQualified: '🎉 Priority Pre-Order Reserved!',
+      checkoutBtn: 'Send Pre-Order Reservation via WhatsApp 💬',
+      checkoutTitle: 'Pre-Order Reservation',
+      checkoutSub: 'Enter your contact details to reserve your AURA items directly via WhatsApp.',
       nameLabel: 'Full Name:',
       phoneLabel: 'Phone Number (WhatsApp):',
       govLabel: 'Governorate:',
       addressLabel: 'Detailed Address:',
-      sendWhatsappBtn: 'Send Order Details to WhatsApp 💬',
-      paymentMethod: 'Payment: Cash on Delivery (COD)'
+      sendWhatsappBtn: 'Confirm & Send Pre-Order via WhatsApp 💬',
+      paymentMethod: 'Payment: Cash on Delivery (Upon Launch)'
     },
     ar: {
-      title: 'سلة التسوق (CART)',
-      empty: 'سلة التسوق فارغة حالياً.',
+      title: 'قائمة الحجز المسبق (PRE-ORDER)',
+      empty: 'قائمة الحجز المسبق فارغة حالياً.',
       explore: 'استكشف المجموعة',
-      subtotal: 'المجموع الفرعي',
-      shipping: 'الشحن',
-      freeShipping: 'مجاناً 🎁',
-      total: 'الإجمالي النهائي',
-      freeShippingBar: (needed: number) => `أضف بقيمة ${needed} ج.م للحصول على شحن مجاني 🚛`,
-      freeShippingQualified: '🎉 تهانينا! حصلت على شحن مجاني لجميع المحافظات!',
-      checkoutBtn: 'متابعة الشراء وإرسال الطلب عبر الواتساب 💬',
-      checkoutTitle: 'إتمام الطلب السريع (EXPRESS ORDER)',
-      checkoutSub: 'أدخل بيانات التوصيل لإرسال فاتورة الطلب مباشرة لفرق عمل أورا عبر الواتساب.',
+      subtotal: 'حالة الطلب',
+      shipping: 'الشحن والتوصيل',
+      freeShipping: 'يتم التأكيد عند التوفر',
+      total: 'إجمالي الحجز المسبق',
+      freeShippingBar: () => `احجز منتجاتك مسبقاً للحصول على أولوية الشحن والتوصيل فور الإطلاق! 🚀`,
+      freeShippingQualified: '🎉 تم تسجيل أولوية الحجز المسبق!',
+      checkoutBtn: 'تأكيد الحجز المسبق عبر الواتساب 💬',
+      checkoutTitle: 'تأكيد الحجز المسبق (PRE-ORDER RESERVATION)',
+      checkoutSub: 'أدخل بيانات التوصيل لحجز منتجات أورا مسبقاً وتأكيد الطلب عبر الواتساب.',
       nameLabel: 'الاسم بالكامل:',
       phoneLabel: 'رقم الموبايل (واتساب):',
       govLabel: 'المحافظة:',
       addressLabel: 'العنوان التفصيلي:',
-      sendWhatsappBtn: 'تأكيد وإرسال الفاتورة عبر الواتساب 💬',
-      paymentMethod: 'طريقة الدفع: الدفع عند الاستلام (Cash on Delivery)'
+      sendWhatsappBtn: 'تأكيد وإرسال طلب الحجز عبر الواتساب 💬',
+      paymentMethod: 'طريقة الدفع: الدفع عند الاستلام فور توفر المنتج رسمياً'
     }
   }[lang];
 
@@ -93,18 +89,16 @@ export default function CartDrawer({
       return;
     }
 
-    let itemsSummary = items.map(item => `• ${item.name} (${item.quantity}x) = ${item.price * item.quantity} EGP`).join('\n');
+    let itemsSummary = items.map(item => `• ${item.name} (${item.quantity}x)`).join('\n');
     
-    const message = `✨ *طلب جديد من متجر AURA Official Store* ✨\n\n` +
+    const message = `✨ *طلب حجز مسبق (Pre-Order Reservation)* ✨\n` +
+      `🏢 *متجر AURA® Official Store*\n\n` +
       `👤 *الاسم:* ${custName}\n` +
       `📞 *رقم الموبايل:* ${custPhone}\n` +
       `📍 *المحافظة والعنوان:* ${custGov} - ${custAddress}\n\n` +
-      `🛍️ *المنتجات المطلوبة:*\n${itemsSummary}\n\n` +
-      `💵 *المجموع:* ${subtotal} EGP\n` +
-      `🚚 *الشحن:* ${shippingCost === 0 ? 'مجاني' : `${shippingCost} EGP`}\n` +
-      `💰 *الإجمالي النهائي:* ${total} EGP\n\n` +
-      `💳 *طريقة الدفع:* الدفع عند الاستلام (Cash on Delivery)\n` +
-      `شكراً لكم!`;
+      `🛍️ *المنتجات المحجوزة مسبقاً:*\n${itemsSummary}\n\n` +
+      `📌 *حالة السعر والدفع:* سيتم التواصل معكم وتأكيد موعد التوصيل الرسمي والدفع عند الاستلام فور توفر العبوات.\n` +
+      `شكراً لتواصلكم مع أورا! 🌿`;
 
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/201553543629?text=${encoded}`, '_blank');
@@ -132,17 +126,12 @@ export default function CartDrawer({
             </button>
           </div>
 
-          {/* Free Shipping Progress Bar */}
-          {subtotal > 0 && (
+          {/* Pre-Order Priority Banner */}
+          {itemCount > 0 && (
             <div className="bg-[#1A1918] text-white text-xs font-bold py-2.5 px-6 flex items-center justify-between border-b border-[#C5A059]/20">
               <div className="flex items-center gap-2">
                 <Truck className="w-4 h-4 text-[#C5A059]" />
-                <span>
-                  {!isFreeShipping 
-                    ? text.freeShippingBar(freeShippingThreshold - subtotal) 
-                    : text.freeShippingQualified
-                  }
-                </span>
+                <span>{text.freeShippingBar()}</span>
               </div>
             </div>
           )}
@@ -173,7 +162,7 @@ export default function CartDrawer({
                       <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-xl border border-[#C5A059]/40 shrink-0" />
                       <div className="flex-1 min-w-0 space-y-1">
                         <h4 className="text-sm font-bold text-[#1A1918] dark:text-white truncate">{item.name}</h4>
-                        <span className="text-xs text-[#C5A059] font-bold block">{item.price} EGP</span>
+                        <span className="text-xs text-[#C5A059] font-bold block">{lang === 'ar' ? 'حجز مسبق | PRE-ORDER' : 'PRE-ORDER'}</span>
                         <div className="flex items-center gap-3 pt-1">
                           <div className="flex items-center border border-[#C5A059]/40 rounded-full bg-[#FDFBF7] dark:bg-[#1A1918]">
                             <button 
@@ -295,17 +284,17 @@ export default function CartDrawer({
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between text-neutral-600 dark:text-neutral-400">
                   <span>{text.subtotal}</span>
-                  <span className="font-bold text-[#1A1918] dark:text-white">{subtotal} EGP</span>
+                  <span className="font-bold text-[#C5A059]">{lang === 'ar' ? 'حجز مسبق | SOON' : 'PRE-ORDER'}</span>
                 </div>
                 <div className="flex justify-between text-neutral-600 dark:text-neutral-400">
                   <span>{text.shipping}</span>
                   <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                    {shippingCost === 0 ? text.freeShipping : `${shippingCost} EGP`}
+                    {text.freeShipping}
                   </span>
                 </div>
                 <div className="pt-2 border-t border-neutral-300 dark:border-neutral-700 flex justify-between text-base font-bold text-[#1A1918] dark:text-white">
                   <span>{text.total}</span>
-                  <span className="text-[#C5A059] text-xl font-serif">{total} EGP</span>
+                  <span className="text-[#C5A059] text-base font-serif font-bold">{lang === 'ar' ? 'أولوية الحجز مجاناً ✨' : 'Priority Reservation'}</span>
                 </div>
               </div>
 

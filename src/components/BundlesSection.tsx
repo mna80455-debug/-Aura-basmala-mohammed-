@@ -16,8 +16,8 @@ export default function BundlesSection({ lang, onAddToCart }: BundlesSectionProp
       sub: 'Get maximum value and complete eco-conscious care with our curated luxury bundles.',
       bestValue: 'MOST POPULAR',
       bestSavings: 'MAX SAVINGS',
-      addToCart: 'Add Bundle to Cart',
-      addedText: 'Added!',
+      addToCart: 'Pre-Order Bundle 🛒',
+      addedText: 'Pre-Ordered! ✓',
       bundles: [
         {
           id: 'bundle-trio-refill',
@@ -61,8 +61,8 @@ export default function BundlesSection({ lang, onAddToCart }: BundlesSectionProp
       sub: 'احصل على التوفير الأعلى والتجربة الشاملة الكاملة مع باقاتنا المجهزة بعناية.',
       bestValue: 'الأكثر مبيعاً 🌟',
       bestSavings: 'أعلى توفير 💰',
-      addToCart: 'إضافة الحزمة للسلة 🛒',
-      addedText: 'تمت الإضافة! ✓',
+      addToCart: 'حجز الحزمة مسبقاً (Pre-Order) 🛒',
+      addedText: 'تم الحجز مسبقاً! ✓',
       bundles: [
         {
           id: 'bundle-trio-refill',
@@ -139,8 +139,9 @@ export default function BundlesSection({ lang, onAddToCart }: BundlesSectionProp
                     {bundle.badge}
                   </span>
                   <div className="text-end">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-[#1A1918] dark:text-white block">{bundle.price} EGP</span>
-                    <span className="text-xs text-neutral-500 line-through block">{bundle.originalPrice} EGP</span>
+                    <span className="text-[#C5A059] text-sm sm:text-base font-extrabold px-3 py-1 rounded-full bg-[#1A1918] dark:bg-[#C5A059] dark:text-[#1A1918] uppercase tracking-wider">
+                      {lang === 'ar' ? 'قريباً | SOON' : 'PRE-ORDER'}
+                    </span>
                   </div>
                 </div>
 

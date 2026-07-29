@@ -17,8 +17,8 @@ export default function ScentQuiz({ lang, onAddToCart }: ScentQuizProps) {
       title: 'Discover Your Signature AURA Scent',
       sub: 'Answer 3 quick questions to match your personality with the perfect dry powder fragrance.',
       restart: 'Take Quiz Again',
-      addToCart: 'Add Recommended Set to Cart',
-      addedText: 'Added to Cart!',
+      addToCart: 'Pre-Order Recommended Set 🛒',
+      addedText: 'Pre-Ordered! ✓',
       questions: [
         {
           q: '1. What is your ideal daily shower mood?',
@@ -78,8 +78,8 @@ export default function ScentQuiz({ lang, onAddToCart }: ScentQuizProps) {
       titleHighlight: 'FIND YOUR SCENT',
       sub: 'أجب على 3 أسئلة سريعة لنحدد لك العطر الأكثر ملاءمة لمزاجك وأسلوب حياتك.',
       restart: 'إعادة الاختبار',
-      addToCart: 'إضافة العطر المقترح للسلة 🛒',
-      addedText: 'تمت الإضافة للسلة! ✓',
+      addToCart: 'طلب حجز العطر المقترح مسبقاً 🛒',
+      addedText: 'تم الحجز مسبقاً! ✓',
       questions: [
         {
           q: '1. ما هو جو الاستحمام المفضل لديك؟',
